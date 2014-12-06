@@ -8,15 +8,13 @@ router.get('/', function(req, res) {
 });
 
 router.get('/search', function(req, res) {
-  res.send([{
-    title: "xyz",
-    location: "abc",
-    description: "desc"
-  },{
-    title: "xyz",
-    location: "abc",
-    description: "desc"
-  }]);
+    var location = req.query.location,
+        title = req.query.title;
+
+    listingsModel.getListings(location, title, req, function(e, results){
+        console.log(results);
+        res.send(results);
+    });
 });
 
 router.post('/',function(req,res,next){

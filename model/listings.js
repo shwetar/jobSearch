@@ -10,11 +10,16 @@ exports.newListing = function(req, cb){
 };
 
 
-exports.getListing = function(req){
-    req.collection= db.collection('listings');
-    req.collection.insert(req.body,{},function(e,results){
-        console.log("Error", e);
-        if(e) return next(e);
-        res.send(results);
-    });
+exports.getListings = function(location, title, req, cb){
+    var arr = [{
+        title: title,
+        location: location,
+        description: "desc"
+      },{
+        title: title+"2",
+        location: location+2,
+        description: "desc2222"
+    }];
+
+    cb.call(this, null, arr);
 };

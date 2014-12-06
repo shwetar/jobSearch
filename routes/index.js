@@ -2,11 +2,6 @@ var express = require('express');
 var router = express.Router();
 var userModel = require('../model/user');
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
-
 /* GET signup page. */
 router.get('/signup', function(req, res) {
   res.render('signup',{ title: 'Signup Page' });
@@ -19,11 +14,6 @@ router.post('/signup', function(req, res) {
         if(e) return next(e);
         res.send(results);
     });
-});
-
-/* GET search page. */
-router.get('/search', function(req, res) {
-  res.render('search',{ title: 'Search Page' });
 });
 
 /* GET post page. */
