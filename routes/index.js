@@ -18,38 +18,17 @@ router.get('/signup', function(req, res) {
 router.post('/signup', function(req, res) {
 
     // Set our internal DB variable
-    var db = req.db;
+    req.collection= db.collection('users');
 
     // Get our form values. These rely on the "name" attributes
-    var userName = req.body.username;
-    var password = req.body.password;
+    // var userName = req.body.username;
+    // var password = req.body.password;
 
-    console.log("userName="+userName);
-    console.log("password="+password);
-
-    // Set our collection
-    var collection = db.collection('users');
-	console.log("1");
-
-    // Submit to the DB
-    collection.insert({
-        "username" : userName,
-        "password" : password
-    }, function (err, doc) {
-        if (err) {
-        	console.log("2");
-            // If it failed, return error
-            res.send("There was a problem adding the information to the database.");
-        }
-        else {
-        	console.log("3");
-            // If it worked, set the header so the address bar doesn't still say /adduser
-            //res.location("login");
-            // And forward to success page
-            //res.redirect("login");
-        }
+    req.collection.insert(req.body,{},function(e,results){
+        console.log("Error", e);
+        if(e) return next(e);
+        res.send(results);
     });
-    console.log("4");
 });
 
 /* GET search page. */
