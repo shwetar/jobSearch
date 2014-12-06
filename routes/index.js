@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mongoskin = require('mongoskin');
-
-var db = mongoskin.db('mongodb://@localhost:27017/jobsdb',{safe:true});
+var userModel = require('../model/user');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -16,15 +14,7 @@ router.get('/signup', function(req, res) {
 
 /* POST to Add User Service */
 router.post('/signup', function(req, res) {
-
-    // Set our internal DB variable
-    req.collection= db.collection('users');
-
-    // Get our form values. These rely on the "name" attributes
-    // var userName = req.body.username;
-    // var password = req.body.password;
-
-    req.collection.insert(req.body,{},function(e,results){
+    userModel.newUser(req, function(e, results){
         console.log("Error", e);
         if(e) return next(e);
         res.send(results);
