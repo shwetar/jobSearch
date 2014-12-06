@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 //var signup = require('./routes/signup');
 var login = require('./routes/login');
+var listings = require('./routes/listings');
 //var search = require('./routes/search');
 //var post = require('./routes/post');
 
@@ -30,6 +31,7 @@ app.use('/', index);
 app.use('/users', users);
 //app.use('/signup',login);
 app.use('/login',login);
+app.use('/listings',listings);
 //app.use('/search',search);
 //app.use('/post',post);
 
