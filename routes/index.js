@@ -16,9 +16,5 @@ router.post('/signup', function(req, res) {
     });
 });
 
-/* GET post page. */
-router.get('/post', function(req, res) {
-  res.render('post',{ title: 'Post Page' });
-});
 
 module.exports = router;

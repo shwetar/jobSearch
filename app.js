@@ -33,7 +33,7 @@ app.use('/users', users);
 app.use('/login',login);
 app.use('/listings',listings);
 //app.use('/search',search);
-//app.use('/post',post);
+//app.use('/post',listings);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

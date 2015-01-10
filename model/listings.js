@@ -9,17 +9,29 @@ exports.newListing = function(req, cb){
     });
 };
 
-
 exports.getListings = function(location, title, req, cb){
-    var arr = [{
-        title: title,
-        location: location,
-        description: "desc"
-      },{
-        title: title+"2",
-        location: location+2,
-        description: "desc2222"
-    }];
+    req.collection=db.collection('listings');
+    console.log(title);
+    //var title = req.query.title;
+    console.log(location);
+    //var location = req.query.location;
+    req.collection.find( {
+        $or: [ { title: title, location: location }, { title: title}, {location: location } ] 
+        },{_id:0} ).toArray(function(e,results){
+        console.log(results);
+        cb.call(this, e, results);
 
-    cb.call(this, null, arr);
+    });
+    
+     /*   var arr = [{
+        title: "title1",
+        location: "location1",
+        description: "description1"
+      },{
+        title: "title2",
+        location: "location2",
+        description: "description2"
+    }];*/
+
+    
 };

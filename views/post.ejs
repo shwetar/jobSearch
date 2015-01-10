@@ -13,18 +13,18 @@
     <div class="container">
       <br><br>
       <div class="row">
-        <form role="form">
+        <form role="form" method="post">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter Title">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">
           </div>
           <div class="form-group">
             <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" placeholder="Enter Location">
+            <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location">
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" rows="5" id="description"></textarea>
+            <textarea class="form-control" rows="5" name="description" id="description"></textarea>
           </div>
           <button type="submit" class="btn btn-lg btn-primary btn-block post">Post</button>
         </form>
@@ -36,3 +36,4 @@
     <script type="text/javascript" src="/javascripts/post.js"></script>
   </body>
 </html>
+
