@@ -17,7 +17,7 @@ router.get('/post', function(req, res) {
 });
 
 
-/*router.get('/search', function(req, res) {
+router.get('/search', function(req, res) {
     var location = req.query.location,
         title = req.query.title;
     
@@ -25,15 +25,15 @@ router.get('/post', function(req, res) {
         console.log("This is in listings:::" );
         console.log(results);
         //res.redirect("/listings");
-        //res.send(results);
+        res.send(results);
        //var jresult = JSON.stringify(results);
        //console.log(jresult);
        //res.render("/Users/shwetarao/node_projects/jobs/views/listings",{ title: 'Listings Page' ,listItems:results});
-       res.render("listings",{ title: 'Listings Page' ,listItems:results});
+       //res.render("listings",{ title: 'Listings Page' ,listItems:results});
     });
-});*/
+});
 
-router.post('/', function(req, res) {
+/*router.post('/', function(req, res) {
     var location = req.param('location'),
         title = req.param('title');
        console.log('req.query.title'+req.query.title);
@@ -50,7 +50,7 @@ router.post('/', function(req, res) {
        //res.render("/Users/shwetarao/node_projects/jobs/views/listings",{ title: 'Listings Page' ,listItems:results});
        res.render("listings",{ title: 'Listings Page' ,listItems:results});
     });
-});
+});*/
 
 
 
