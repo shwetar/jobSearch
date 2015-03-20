@@ -5,9 +5,9 @@ var listingsModel = require("../model/listings");
 
 /* GET listings page. */
 router.get('/', function(req, res) {
-   listingsModel.getAllListings(req, function(e, results){
-    res.render('listings',{ title: 'Listings Page',listItems:results});
-   });
+   //listingsModel.getAllListings(req, function(e, results){
+    res.render('listings',{ title: 'Listings Page',listItems:""});
+   //});
 });
 
 

@@ -27,10 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Need to update Home screen
-app.get('/', function(req, res){
-    res.send("Hello world");
-});
+
 
 app.use('/', index);
 app.use('/users', users);
@@ -39,6 +36,10 @@ app.use('/login',login);
 app.use('/listings',listings);
 //app.use('/search',search);
 //app.use('/post',listings);
+//Need to update Home screen
+app.get('/*', function(req, res){
+    res.redirect("http://www.indeed.com");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
