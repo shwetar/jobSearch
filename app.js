@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -38,7 +40,7 @@ app.use('/listings',listings);
 //app.use('/post',listings);
 //Need to update Home screen
 app.get('/*', function(req, res){
-    res.redirect("http://www.indeed.com");
+    res.render('index',{ title: 'Search for Node.js Jobs' });
 });
 
 // catch 404 and forward to error handler

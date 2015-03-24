@@ -1,2 +1,40 @@
-<!-- index page-->
-Hello World!!
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Node.js Jobs</h1>
+        <table>
+            <tr>
+                <td><label for="what">what</label></td>
+                <td><label for="where">where</label></td>
+            </tr>
+            <tr>
+                <td><input class="input_text" maxlength="512" size="31" id="what" name="q" autocomplete="off" id="what"></td>
+                <td><input class="input_text" maxlength="512" size="31" id="where" name="l" autocomplete="off" id="where"></td>
+                <td><button id="findJobs"> Find Jobs</button></td>
+            </tr>
+        </table>        
+    </div>
+    
+    <footer>
+        <% include partials/footer %>
+    </footer>
+    <script type="text/javascript" src="/javascripts/libs/bootstrap-master/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/libs/bootstrap3-typeahead.min.js"></script>
+
+    <script>
+        var what = ["Software Engineer","Senior Software Engineer","Web Designer","web Developer","Architect"];
+        var where = ["San jose,ca","Santa Clara,ca","Palo Alto ,ca","Fremomt,ca","Fresno,ca"];
+        
+
+        $("#what").typeahead({ source:what });
+        $("#where").typeahead({ source:where });
+
+    </script>
+</body>
+</html>
