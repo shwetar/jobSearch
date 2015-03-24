@@ -12,13 +12,13 @@ exports.newListing = function(req, cb){
     });
 };
 
-/*exports.getAllListings = function(req, cb){
+exports.getAllListings = function(req, cb){
     req.collection=db.collection('listings');
 
     req.collection.find().toArray(function(e, results){
         cb.call(this, e, results);
     });
-};*/
+};
 
 exports.getListings = function(location, title, req, cb){
     req.collection=db.collection('listings');

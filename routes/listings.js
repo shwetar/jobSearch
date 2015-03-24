@@ -4,10 +4,17 @@ var listingsModel = require("../model/listings");
 
 
 /* GET listings page. */
-router.get('/', function(req, res) {
+/*router.get('/', function(req, res) {
    //listingsModel.getAllListings(req, function(e, results){
     res.render('listings',{ title: 'Listings Page',listItems:""});
    //});
+});*/
+
+/* GET listings page. */
+router.get('/', function(req, res) {
+   listingsModel.getAllListings(req, function(e, results){
+    res.send(results);
+   });
 });
 
 

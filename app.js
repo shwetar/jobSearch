@@ -38,7 +38,8 @@ app.use('/listings',listings);
 //app.use('/post',listings);
 //Need to update Home screen
 app.get('/*', function(req, res){
-    res.redirect("http://www.indeed.com");
+    //res.redirect("http://www.indeed.com");
+    res.render('index',{ title: 'Home Page' });
 });
 
 // catch 404 and forward to error handler

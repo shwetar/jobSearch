@@ -1,2 +1,61 @@
-<!-- index page-->
-Hello World!!
+<!-- views/pages/home.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+    <style type="text/css">
+    .container {
+        width: 400px;}
+    </style>
+</head>
+<body>
+ 
+
+<div class="content">
+  <table width=700 border=0 cellspacing=0 cellpadding=0 align=center style="margin-top:1em">
+    <tr>
+
+      <td align ="center">
+       <div>
+          <img border=0 width=150 height=75 src="/images/Jobsearch.png" alt=" Job search"" title="job search"">
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <table cellspacing=0 cellpadding=3 width="100%" align=center>
+            <tr>
+              <td><label for=what>what</label></td>
+              <td colspan=2><label for=where>where</label></td>
+            </tr>
+            <tr>
+              <td><input type="text"  data-provide="typeahead" maxlength=512 size=31 id="what" name="q" autocomplete=off ></span><div style="width:250px"><!-- --></div></td>
+
+              <td><input type="text" data-provide="typeahead"  maxlength=64 size=27 id="where" name="l" autocomplete=off value="Sunnyvale, CA"></span><div style="width:200px"><!-- --></div></td>
+
+              <td><span style="width:auto;"><input id="findjob" type=submit class="input_submit"  value="Find Jobs"></span></span></td>
+            </tr>
+          
+          </table>
+<!--</form>-->
+
+
+  </div>
+    
+    <footer>
+        <% include partials/footer %>
+    </footer>
+
+  <script type="text/javascript" src="/javascripts/ejs.js"></script>
+    <script type="text/javascript" src="/javascripts/search.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap3-typeahead.min.js"></script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+    $('#what').typeahead({items: 3,source: ["Software Engineer","Senior Software Engineer","Web Designer","web Developer","Architect"]});
+    $('#where').typeahead({items: 3,source: ["San jose,ca","Santa Clara,ca","Palo Alto ,ca","Fremomt,ca","Fresno,ca"]});
+  })
+  </script>
+
+</body>
+</html>
