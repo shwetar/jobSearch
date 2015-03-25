@@ -20,20 +20,41 @@
             </tr>
         </table>        
     </div>
+
+    <table class="results table table-striped table-bordered" "col-lg-12">
+
+    </table>
     
     <footer>
         <% include partials/footer %>
     </footer>
+
+    <script type="text/javascript" src="/javascripts/libs/ejs.js"></script>
     <script type="text/javascript" src="/javascripts/libs/bootstrap-master/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="/javascripts/libs/bootstrap3-typeahead.min.js"></script>
 
     <script>
-        var what = ["Software Engineer","Senior Software Engineer","Web Designer","web Developer","Architect"];
-        var where = ["San jose,ca","Santa Clara,ca","Palo Alto ,ca","Fremomt,ca","Fresno,ca"];
+        var what = ["Software Engineer","Senior Software Engineer",
+                    "Web Designer","web Developer","Architect"];
+        var where = ["San jose,ca","Santa Clara,ca","Palo Alto ,ca",
+                    "Fremomt,ca","Fresno,ca"];
         
-
         $("#what").typeahead({ source:what });
         $("#where").typeahead({ source:where });
+        $("#findJobs").on("click", getListings);
+
+        function getListings(){
+            $.get('/listings.ejs', function (template) {
+                var func = ejs.compile(template);
+
+                // Grab the data
+                $.get('/listings/search', function (data) {
+                   // Generate the html from the given data.
+                   var html = func({"listings": data});
+                   $('.results').html(html);
+                });
+            });
+        }
 
     </script>
 </body>

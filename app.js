@@ -39,6 +39,11 @@ app.use('/listings',listings);
 //app.use('/search',search);
 //app.use('/post',listings);
 //Need to update Home screen
+
+app.get('/listings.ejs', function(req, res){
+    res.sendfile("listings.ejs", {root: path.join(__dirname, 'views')});
+});
+
 app.get('/*', function(req, res){
     res.render('index',{ title: 'Search for Node.js Jobs' });
 });
