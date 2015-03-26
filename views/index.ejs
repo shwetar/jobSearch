@@ -35,20 +35,23 @@
 
     <script>
         var what = ["Software Engineer","Senior Software Engineer",
-                    "Web Designer","web Developer","Architect"];
+                    "Web Designer","web Developer","Architect","Java Expert"];
         var where = ["San jose,ca","Santa Clara,ca","Palo Alto ,ca",
-                    "Fremomt,ca","Fresno,ca"];
+                    "Fremomt,ca","Fresno,ca","Sunnyvale,ca"];
         
         $("#what").typeahead({ source:what });
         $("#where").typeahead({ source:where });
         $("#findJobs").on("click", getListings);
 
         function getListings(){
+            var what = $('#what').val();
+            var where = $('#where').val();
+            console.log("what:"+what + " where:"+where);
             $.get('/listings.ejs', function (template) {
                 var func = ejs.compile(template);
 
                 // Grab the data
-                $.get('/listings/search', function (data) {
+                $.get('/listings/search',{location:where,title:what}, function (data) {
                    // Generate the html from the given data.
                    var html = func({"listings": data});
                    $('.results').html(html);
