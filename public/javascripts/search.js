@@ -3,7 +3,6 @@ $(".search").on("click", function(ev){
     
 	$.get( "/listings/search", { title: $("#title").val(), location: $("#location").val() } )
       .done(function( data ) {
-      	debugger;
         console.log( "Data Loaded: " + data );
         $('#listTable').show();
         renderListingData(data);
@@ -19,7 +18,6 @@ function renderListingData(data){
               "<td><%= item.description %></td>"+
             "</tr>"+
           "<%});%>";
-	debugger;
 	var html=ejs.render(listingTemplate,{listItems:data});
 	console.log(html);
 	$('#myTable').html(html);
