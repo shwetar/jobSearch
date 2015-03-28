@@ -9,48 +9,33 @@
 </head>
 <body>
     <div class="header"></div>
-    <div class="find-jobs-container"></div>
-    <div class="find-resumes-container hidden"></div>
-    <div class="list-container"></div>
-    <div class="upload hidden"></div>
+    <div class="main-content-container">
+        <div class="sidebar-container col-md-4"></div>
+        <div class="list-container col-md-8"></div>
+    </div>
+    <div class="add-friend hidden"></div>
     <div class="footer"></div>
   
-   <script type="text/template" id="header-template">
+   <script type="text/template" id="header-template"> 
     <header>
-        <a href="#find-jobs" class="find-jobs">Find jobs</a>
-        <a href="#find-resumes" class="find-resumes">Find resumes</a>
-        <a href="#post-job" class="post-job">Post a job</a>
+        <h1>Welcome to your favorite links</h1>
+        <a href="#add-friend" class="add-friend">Add a Friend</a>
+        <a href="#add-link" class="add-link">Add a Link</a>
     </header>
    </script>
 
-   <script type="text/template" id="search-template">
-        <h1>Search Jobs</h1>
-        <table>
-            <tr>
-                <td><label for="what">what</label></td>
-                <td><label for="where">where</label></td>
-            </tr>
-            <tr>
-                <td><input class="input_text" maxlength="512" size="31" id="what" name="q" autocomplete="off" id="what"></td>
-                <td><input class="input_text" maxlength="512" size="31" id="where" name="l" autocomplete="off" id="where"></td>
-                <td><button id="findJobs"> Find Jobs</button></td>
-            </tr>
-        </table>
+   <script type="text/template" id="sidebar-template">
+        <ul class="parents-list">
+            <li>http://stackoverflow.com/questions/18839276/proper-way-to-create-a-collection-list-view-in-backbone
+        </ul>
    </script>
 
-   <script type="text/template" id="find-resumes-template">
-        <h1>Find Resumes</h1>
-        <table>
-            <tr>
-                <td><label for="what">what</label></td>
-                <td><label for="where">where</label></td>
-            </tr>
-            <tr>
-                <td><input class="input_text" maxlength="512" size="31" id="what" name="q" autocomplete="off" id="what"></td>
-                <td><input class="input_text" maxlength="512" size="31" id="where" name="l" autocomplete="off" id="where"></td>
-                <td><button id="findJobs"> Find Resumes</button></td>
-            </tr>
-        </table>
+   <script type="text/template" id="list-content-template">
+        <h1>List Content</h1>
+   </script>
+
+   <script type="text/template" id="footer-template">
+        
    </script>
 
   <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
@@ -59,9 +44,11 @@
   <script src="/bower_components/backbone-localstorage/backbone-localstorage.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="/bower_components/bootstrap3-typeahead/bootstrap3-typeahead.min.js"></script>
-  <script type="text/javascript" src="javascripts/view/SearchView.js"></script>
-  <script type="text/javascript" src="javascripts/view/HeaderView.js"></script>
-  <script type="text/javascript" src="javascripts/view/FindResumes.js"></script>
+
+  <script type="text/javascript" src="javascripts/view/SideBar.js"></script>
+  <script type="text/javascript" src="javascripts/view/ListContent.js"></script>
+  <script type="text/javascript" src="javascripts/view/Header.js"></script>
+  <script type="text/javascript" src="javascripts/view/Footer.js"></script>
   
 </body>
 </html>
