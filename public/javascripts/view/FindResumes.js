@@ -1,9 +1,9 @@
 'use strict';
 
-var AppView = Backbone.View.extend({
-  el: $('.container'),
+var FindResumes = Backbone.View.extend({
+  el: $('.find-resumes-container'),
   // template 
-  template: _.template($("#search-template").html()),
+  template: _.template($("#find-resumes-template").html()),
   initialize: function(){
     this.render();
     var what = ["Software Engineer","Senior Software Engineer",
@@ -19,4 +19,4 @@ var AppView = Backbone.View.extend({
   }
 });
 
-var appView = new AppView();
+new FindResumes();
