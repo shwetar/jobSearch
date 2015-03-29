@@ -3,10 +3,10 @@ var ParentView = Backbone.View.extend({
     template: _.template($("#parents-list-template").html()),
 
     initialize: function() {
-        this.render();
+      this.render();
     },
     render: function() {
-        this.$el.html(this.template({item: this.model}));
-        return this;
+      this.$el.html(this.template({item: this.model}));
+      return this;
     }
 });

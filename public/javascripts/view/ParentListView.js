@@ -27,6 +27,7 @@ var ParentListView = Backbone.View.extend({
   },
   
   childClicked: function(e){
+    new ListContent({collection: $(e.target).data("child")});
     console.log($(e.target).data("child").name);
   },
 
@@ -44,24 +45,46 @@ var ParentListView = Backbone.View.extend({
   }
 });
 
+var child1 = new Child({
+  id: 1,
+  name: "Edward Polyakov",
+  parents: [1, 2],
+  links: ["http://www.friv.com"]
+});
+
+var child2 = new Child({
+  id: 2,
+  name: "Maria Polyakov",
+  parent: 1,
+  links: ["http://www.stmath.com", "http://www.sumdog.com"]
+});
+
+var child3 = new Child({
+  id: 3,
+  name: "Joseph",
+  parent: 2,
+  links: ["http://www.linkedin.com"]
+});
+
+var child4 = new Child({
+  id: 4,
+  name: "Veronika",
+  parent: 2,
+  links: ["http://www.yahoo.com", "http://www.google.com"]
+});
+
 var parentsList = new ParentList([
     new Parent({
-        name: 'Oleg Polyakov',
-        city: 'Mountain View',
-        children: [{
-          name: "Edward"
-        },{
-          name: "Maria"
-        }]
+      id: 1,
+      name: 'Oleg Polyakov/Antonina Trachuk',
+      city: 'Mountain View',
+      children: [child1, child2]
     }),
     new Parent({
-        name: 'Antonina Trachuk',
-        city: 'Mountain View',
-        children: [{
-          name: "Edward"
-        },{
-          name: "Maria"
-        }]
+      id: 2,
+      name: 'John Smith',
+      city: 'San Jose',
+      children: [child3, child4]
     })
 ]);
 new ParentListView({collection: parentsList});

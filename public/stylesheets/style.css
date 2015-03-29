@@ -1,8 +1,10 @@
 .hidden{display: none;}
 header{height:50px;margin-top:10px;}
-.tree li {
+li {
     list-style-type:none;
     margin:0;
     padding:10px 5px 0 5px;
     position:relative
 }
+.heading{font-size: 18px;font-weight: bold;color: #0aa;font-style: italic;}
+.modal-body input{width:450px;}

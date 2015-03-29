@@ -3,6 +3,7 @@ var Child = Backbone.Model.extend({
         firstName : '',
         lastName: '',
         city: '',
+        parents: [],
         links: []
     }
 });
