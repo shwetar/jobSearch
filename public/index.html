@@ -8,25 +8,46 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    <div class="header"></div>
+    <header class="header"></header>
+    
     <div class="main-content-container">
-        <div class="sidebar-container col-md-4"></div>
+        <div class="sidebar-container col-md-4 tree well">
+            <ul class="parents-list">
+            </ul>
+        </div>
         <div class="list-container col-md-8"></div>
     </div>
+    
     <div class="add-friend hidden"></div>
+    
     <div class="footer"></div>
   
    <script type="text/template" id="header-template"> 
-    <header>
-        <h1>Welcome to your favorite links</h1>
-        <a href="#add-friend" class="add-friend">Add a Friend</a>
-        <a href="#add-link" class="add-link">Add a Link</a>
-    </header>
+        <div class="title col-md-4">Social Kids</div>
+        <div class="navigation col-md-8">
+            <a href="#add-friend" class="add-link">Add a Friend</a>
+            <a href="#add-link" class="add-link">Add a Link</a>
+        </div>
    </script>
 
-   <script type="text/template" id="sidebar-template">
-        <ul class="parents-list">
-            <li>http://stackoverflow.com/questions/18839276/proper-way-to-create-a-collection-list-view-in-backbone
+   <script type="text/template" id="parents-list-template">
+        <ul>
+            <li class="parent_li">
+                <span><i class="glyphicon glyphicon-minus-sign"></i>
+                    <%= item.name %>
+                </span>
+                <ul>
+                    <%
+                        _.each(item.children, function(child,key,list){
+                    %>
+                        <li>
+                            <span class="child" data-child='<%=JSON.stringify(child)%>'><i></i><%= child.name %></span> 
+                        </li>
+                    <%
+                        });
+                    %>
+                </ul>
+            </li>
         </ul>
    </script>
 
@@ -45,7 +66,10 @@
   <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="/bower_components/bootstrap3-typeahead/bootstrap3-typeahead.min.js"></script>
 
-  <script type="text/javascript" src="javascripts/view/SideBar.js"></script>
+    <script type="text/javascript" src="javascripts/model/Parent.js"></script>
+    <script type="text/javascript" src="javascripts/collections/ParentList.js"></script>
+    <script type="text/javascript" src="javascripts/view/ParentView.js"></script>
+    <script type="text/javascript" src="javascripts/view/ParentListView.js"></script>
   <script type="text/javascript" src="javascripts/view/ListContent.js"></script>
   <script type="text/javascript" src="javascripts/view/Header.js"></script>
   <script type="text/javascript" src="javascripts/view/Footer.js"></script>
