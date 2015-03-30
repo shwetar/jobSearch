@@ -9,8 +9,12 @@ var AppView = Backbone.View.extend({
     },
     
     addLink: function(e){
-        console.log("added link");
-        $('#addLink').modal('hide');
+      //Ideally Links would be a collection, so we don't have to do a set and could have simple add
+      // Add on Model will not fire a change event, it only bubbles to collections
+      var linkName = $(".link-name").val();
+      var links = this.currentChild.get("links").concat(linkName);
+      this.currentChild.set("links", links);
+      console.log("added link", linkName);
     },
 
     addFriend: function(){
@@ -31,6 +35,7 @@ var AppView = Backbone.View.extend({
         var child1 = new Child({
           id: 1,
           name: "Edward Polyakov",
+          yourChild: true,
           parents: [1, 2],
           links: ["http://www.friv.com"]
         });
@@ -38,6 +43,7 @@ var AppView = Backbone.View.extend({
         var child2 = new Child({
           id: 2,
           name: "Maria Polyakov",
+          yourChild: true,
           parent: 1,
           links: ["http://www.stmath.com", "http://www.sumdog.com"]
         });
@@ -45,6 +51,7 @@ var AppView = Backbone.View.extend({
         var child3 = new Child({
           id: 3,
           name: "Joseph",
+          yourChild: false,
           parent: 2,
           links: ["http://www.linkedin.com"]
         });
@@ -52,6 +59,7 @@ var AppView = Backbone.View.extend({
         var child4 = new Child({
           id: 4,
           name: "Veronika",
+          yourChild: false,
           parent: 2,
           links: ["http://www.yahoo.com", "http://www.google.com"]
         });
@@ -71,8 +79,10 @@ var AppView = Backbone.View.extend({
             })
         ]);
 
+        this.currentChild = child1;
+
         new ParentListView({collection: this.parentsList});
-        new ListContent({collection: child1.toJSON()});
+        new ListContent({model: this.currentChild});
         return this;
     }
 });

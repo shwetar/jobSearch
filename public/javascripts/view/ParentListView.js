@@ -28,7 +28,7 @@ var ParentListView = Backbone.View.extend({
   },
   
   childClicked: function(e){
-    new ListContent({collection: $(e.target).data("child")});
+    new ListContent({model: $(e.target).data("child")});
     console.log($(e.target).data("child").name);
   },
 

@@ -18,25 +18,6 @@
         <div class="list-container col-md-8"></div>
     </div>
     
-    <div class="modal fade" id="addLink" tabindex="-1" role="dialog" aria-labelledby="addLink" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Add Link</h4>
-                </div>
-                <div class="modal-body">
-                    <label for="link-name">Link URL</label>
-                    <input type="text" class="link-name" name="link-name" placeholder="http://www.friv.com" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary add-link-button">Add Link</button>
-            </div>
-        </div>
-      </div>
-    </div>
-
     <div class="modal fade" id="addFriend" tabindex="-1" role="dialog" aria-labelledby="addFriend" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -61,7 +42,6 @@
    <script type="text/template" id="header-template"> 
         <div class="title col-md-9 heading">Share Your Kids Favorite Websites</div>
         <div class="navigation col-md-3">
-            <button type="button" class="btn btn-default add-link" data-toggle="modal" data-target="#addLink">Add Link</button>
             <button type="button" class="btn btn-default add-friend" data-toggle="modal" data-target="#addFriend">Add Friend</button>
         </div>
    </script>
@@ -101,6 +81,14 @@
                 });
             %>
         </ul>
+        <%
+                if(child.yourChild){
+        %>
+        <input type="text" class="link-name" name="link-name" placeholder="http://www.friv.com" />
+        <button type="button" class="btn btn-primary add-link-button">Add Link</button>
+        <%
+            }
+        %>
    </script>
 
    <script type="text/template" id="footer-template">
