@@ -28,15 +28,27 @@ var ParentListView = Backbone.View.extend({
   },
   
   childClicked: function(e){
-    new ListContent({model: $(e.target).data("child")});
-    console.log($(e.target).data("child").name);
+    var foundChild;
+    var childId = $(e.target).data("child").id;
+    _.each(this.collection.models, function(parent){
+      var children = parent.get("children");
+      _.each(children, function(child){
+        if(child.id === childId){
+          foundChild = child;
+        }
+      });
+    });
+    new ListContent({model: foundChild});
   },
 
   initialize: function(){
+    var self = this;
     this.listenTo(this.collection, "add", this.render);
     this.render();
     $('.tree li.parent_li > span').on("click", this.expandCollapseChildren);
-    $('.child').on("click", this.childClicked);
+    $('.child').on("click", function(e){
+      self.childClicked(e);
+    });
   },
   render: function(){
     var self = this;
