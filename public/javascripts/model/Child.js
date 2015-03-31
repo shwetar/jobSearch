@@ -22,6 +22,11 @@ var Child = Backbone.Model.extend({
         this.on('change', function(model) {
             console.log('something got changed in child');
         });
+    },
+    validate: function (attr) {
+        if (attr.id <= 0) {
+            return "Invalid value for ID supplied.";
+        }
     }
 
 });

@@ -45,10 +45,6 @@ var ParentListView = Backbone.View.extend({
     var self = this;
     this.listenTo(this.collection, "add", this.render);
     this.render();
-    $('.tree li.parent_li > span').on("click", this.expandCollapseChildren);
-    $('.child').on("click", function(e){
-      self.childClicked(e);
-    });
   },
   render: function(){
     var self = this;
@@ -56,6 +52,10 @@ var ParentListView = Backbone.View.extend({
     this.collection.each(function(model) {
       var parentView = new ParentView({model: model.toJSON()});
       self.$el.append(parentView.el);
+    });
+    $('.tree li.parent_li > span').on("click", this.expandCollapseChildren);
+    $('.child').on("click", function(e){
+      self.childClicked(e);
     });
   }
 });

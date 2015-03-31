@@ -69,6 +69,9 @@
    </script>
 
    <script type="text/template" id="list-content-template">
+        <div class="alert alert-error alert-danger fade out hidden">
+            <strong>Error!</strong> Invalid URL.
+        </div>
         <h1>Favorite Links</h1>
         <ul>
             <%
@@ -84,8 +87,10 @@
         <%
                 if(child.yourChild){
         %>
-        <input type="text" class="link-name" name="link-name" placeholder="http://www.friv.com" />
-        <button type="button" class="btn btn-primary add-link-button">Add Link</button>
+        <form id="add-link-form">
+          <input type="text" class="link-name" name="link-name" placeholder="http://www.friv.com" />
+          <button type="button" class="btn btn-primary add-link-button">Add Link</button>
+        </form>
         <%
             }
         %>
