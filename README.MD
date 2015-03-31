@@ -19,3 +19,7 @@ http://www.100percentjs.com/best-way-debug-node-js/
 
 
 curl -X POST -d "title=Some cool Job&Location=San Jose&Description=Love this cool job" http://localhost:3000/listings
+
+http://www.codeproject.com/Articles/801863/BackBone-Tutorial-Part-Understanding-Backbone-js-V
+http://getbootstrap.com/components/#list-group
+http://addyosmani.github.io/backbone-fundamentals/#introduction
