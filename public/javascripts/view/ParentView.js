@@ -8,7 +8,7 @@ var ParentView = Backbone.View.extend({
         this.render();
     },
     render: function() {
-      this.$el.html(this.template({item: this.model}));
-      return this;
+        this.$el.html(this.template({item: this.model}));
+        return this;
     }
 });

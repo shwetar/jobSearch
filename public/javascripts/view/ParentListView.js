@@ -29,16 +29,22 @@ var ParentListView = Backbone.View.extend({
   
   childClicked: function(e){
     var foundChild;
+    var foundParent;
     var childId = $(e.target).data("child").id;
     _.each(this.collection.models, function(parent){
       var children = parent.get("children");
       _.each(children, function(child){
         if(child.id === childId){
           foundChild = child;
+          foundParent = parent;
         }
       });
     });
+    appView.currentChild = foundChild;
+    appView.currentParent = foundParent;
     new ListContent({model: foundChild});
+    $(".child").removeClass("active");
+    $(e.target).addClass("active");
   },
 
   initialize: function(){
@@ -50,6 +56,8 @@ var ParentListView = Backbone.View.extend({
     var self = this;
     self.$el.empty();
     this.collection.each(function(model) {
+      var activeParent = model.id === 1;
+      model.set("activeParent",activeParent);
       var parentView = new ParentView({model: model.toJSON()});
       self.$el.append(parentView.el);
     });

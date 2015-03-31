@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var parents = require('./routes/parents');
 
 var app = express();
 
@@ -18,5 +19,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+
+app.use('/api/parents', parents);
 
 module.exports = app;

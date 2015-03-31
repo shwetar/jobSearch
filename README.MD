@@ -41,6 +41,8 @@ $ git branch --set-upstream-to origin/favLinksOleg
 If you want to remove an app
 $ heroku apps:destroy –app appname
 
+$ heroku logs
+
 
 Other Git Goodies:
 
