@@ -56,3 +56,46 @@ git rebase origin/develop
 git diff develop
 git push -f origin head
 git commit —amend
+
+
+### To Run with MongoDB
+
+You can temp insert mock data into db
+$ mongod
+$ mongo
+$ use olegdb
+$ db.parents.insert([{
+    "id": 1,
+    "name": "Test Stevenson",
+    "city": "Mountain View",
+    "children": [{
+        "id": 1,
+        "name": "Edik Test",
+        "yourChild": true,
+        "parent": 1,
+        "links": ["http://www.friv.com"],
+    }, {
+        "id": 2,
+        "name": "Maria Test",
+        "yourChild": true,
+        "parent": 1,
+        "links": ["http://www.stmath.com", "http://www.sumdog.com"]
+    }]
+}, {
+    "id": 2,
+    "name": "John Smith",
+    "city": "San Jose",
+    "children": [{
+        "id": 3,
+        "name": "Joseph",
+        "yourChild": false,
+        "parent": 2,
+        "links": ["http://www.linkedin.com"]
+    }, {
+        "id": 4,
+        "name": "Veronika",
+        "yourChild": false,
+        "parent": 2,
+        "links": ["http://www.yahoo.com", "http://www.google.com"]
+    }]
+}]);

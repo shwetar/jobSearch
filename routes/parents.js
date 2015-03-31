@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var parentsModel = require("../model/parents");
 
 var parents = [{
     "id": 1,
@@ -38,6 +39,10 @@ var parents = [{
 }];
 /* GET signup page. */
 router.get('/', function(req, res) {
+    // parentsModel.getAllParents(req, function(e, results){
+    //     console.log(results);
+    //     res.send(results);
+    // });
     res.send(parents);
 });
 
