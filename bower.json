@@ -19,6 +19,7 @@
     "underscore": "~1.8.2",
     "backbone": "~1.1.2",
     "bootstrap": "~3.3.4",
-    "bootstrap3-typeahead": "~3.1.0"
+    "bootstrap3-typeahead": "~3.1.0",
+    "backbone.localStorage": "~1.1.16"
   }
 }
