@@ -1,7 +1,7 @@
 'use strict';
 
 var HomeView = Backbone.View.extend({
-    el: $('#home-page'),
+    template: _.template($("#home-template").html()),
 
     events: {
         'click .add-link-button': 'addLink',
@@ -50,6 +50,7 @@ var HomeView = Backbone.View.extend({
     
     render: function() {
       var self = this;
+      this.$el.html(this.template({}));
       this.parentsList = new ParentList();
       var parents = localStorage.getItem("parents");
       if(_.isEmpty(parents)){

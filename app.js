@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var parents = require('./routes/parents');
+var users = require('./routes/users');
 
 var app = express();
 
@@ -21,5 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.use('/api/parents', parents);
+app.use('/api/users', users);
 
 module.exports = app;

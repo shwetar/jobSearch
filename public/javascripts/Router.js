@@ -1,8 +1,10 @@
+'use strict';
 var myRouter = Backbone.Router.extend({
     
     
     login: null,
     signup: null,
+    home: null,
     container:null,
     
     initialize: function() {
@@ -13,15 +15,21 @@ var myRouter = Backbone.Router.extend({
         "": "loginRoute",
         "login": "loginRoute",
         "signup": "signupRoute",
-        
+        "home": "homeRoute"
+    },
+
+    homeRoute: function(){
+        if (this.home == null) {
+            this.home = new HomeView();
+        }
+        this.container.myChildView = this.home;
+        this.container.render();
     },
 
     loginRoute: function () {
-        //debugger;
         if (this.login == null) {
             this.login = new LoginView();
         }
-
         this.container.myChildView = this.login;
         this.container.render();
     },
@@ -39,5 +47,5 @@ var myRouter = Backbone.Router.extend({
 });
 
 
-router = new myRouter();
+var router = new myRouter();
 Backbone.history.start();
