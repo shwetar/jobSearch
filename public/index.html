@@ -10,37 +10,7 @@
 </head>
 <body>
     <header class="header"></header>
-    
-    <div id="login-page">
-      Username <input type="text" name="username" />
-      Password <input type="password" name="password" />
-      <button id="login">Login</button>
-      <div>
-        <a href="#signup-page" class="signup-page-redirect">Signup</a>
-      </div>
-    </div>
-
-    <div id="signup-page">
-      Username <input type="text" name="username" />
-      Password <input type="password" name="password" />
-      <button id="signup">Signup</button>
-      <div>
-        <a href="#login-page" class="login-page-redirect">Login</a>
-      </div>
-    </div>
-    
-    <div id="home-page">
-      <div class="main-content-container">
-          <div class="sidebar-container col-md-4 tree well">
-              <div class="navigation">
-                  <button type="button" class="btn btn-default add-friend" data-toggle="modal" data-target="#addParent">Add Parent</button>
-              </div>
-              <ul class="parents-list">
-              </ul>
-          </div>
-          <div class="list-container col-md-8"></div>
-      </div>
-      
+    <div id="app-container">
       <div class="modal fade" id="addParent" tabindex="-1" role="dialog" aria-labelledby="addParent" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
@@ -62,6 +32,43 @@
     </div>
     
     <div class="footer"></div>
+
+    <script type="text/template" id="login-template">
+      <div id="login-page">
+          Username <input type="text" name="username" />
+          Password <input type="password" name="password" />
+          <button id="login">Login</button>
+          <div>
+            <a href="#signup" class="signup-page-redirect">Signup</a>
+          </div>
+        </div>
+    </script>
+    <script type="text/template" id="signup-template">
+      <div id="signup-page">
+        Username <input type="text" name="username" />
+        Password <input type="password" name="password" />
+        <button id="signup">Signup</button>
+        <div>
+          <a href="#login" class="login-page-redirect">Login</a>
+        </div>
+      </div>
+    </script>
+    <script type="text/template" id="home-template">
+      <div id="home-page">
+        <div class="main-content-container">
+            <div class="sidebar-container col-md-4 tree well">
+                <div class="navigation">
+                    <button type="button" class="btn btn-default add-friend" data-toggle="modal" data-target="#addParent">Add Parent</button>
+                </div>
+                <ul class="parents-list">
+                </ul>
+            </div>
+            <div class="list-container col-md-8"></div>
+        </div>
+      </div>
+    </script>
+
+
   
    <script type="text/template" id="header-template"> 
         <div class="title col-md-12 heading">Share Your Kids Favorite Websites</div>
@@ -138,7 +145,10 @@
     -->
   <script type="text/javascript" src="javascripts/view/user/SignupView.js"></script>
   <script type="text/javascript" src="javascripts/view/user/LoginView.js"></script>
-  <script type="text/javascript" src="javascripts/view/AppView.js"></script>
+  
+  <script type="text/javascript" src="javascripts/view/ContainerView.js"></script>
+  <script type="text/javascript" src="javascripts/view/Router.js"></script>
+
   <script type="text/javascript" src="javascripts/view/layout/Header.js"></script>
   <script type="text/javascript" src="javascripts/view/layout/Footer.js"></script>
   

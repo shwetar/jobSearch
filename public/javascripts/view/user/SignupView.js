@@ -1,21 +1,16 @@
 'use strict';
 
 var SignupView = Backbone.View.extend({
-    el: $('#signup-page'),
+    //el: $('#signup-page'),
+    template: _.template($("#signup-template").html()),
 
-    events: {
-        'click .login-page-redirect': 'loadLoginPage'
-    },
-    
-    loadLoginPage: function(){
-
-    },
-    
     initialize: function() {
-      $(this.el).show();
+      this.render();
     },
     
     render: function() {
+        this.$el.html(this.template({}));
+        return this;
       
     }
 });
