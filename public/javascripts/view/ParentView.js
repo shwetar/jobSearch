@@ -8,11 +8,10 @@ var ParentView = Backbone.View.extend({
     'click span': 'expandParent'
   	},
   	expandParent:function(event){
-  		//alert("glyphicon clicked");
+  		
   		console.log("in event"+$(event.currentTarget));
   		$(event.currentTarget).children("i").toggleClass('glyphicon-minus-sign glyphicon-plus-sign');
-  		//$(event.currentTarget).next()
-  		//$(this).children("ul:first").slideToggle();
+  		
   		$(event.currentTarget).next().slideToggle();
 
   	},
