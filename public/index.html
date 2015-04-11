@@ -11,32 +11,52 @@
 <body>
     <header class="header"></header>
     
-    <div class="main-content-container">
-        <div class="sidebar-container col-md-4 tree well">
-            <div class="navigation">
-                <button type="button" class="btn btn-default add-friend" data-toggle="modal" data-target="#addParent">Add Parent</button>
-            </div>
-            <ul class="parents-list">
-            </ul>
-        </div>
-        <div class="list-container col-md-8"></div>
+    <div id="login-page">
+      Username <input type="text" name="username" />
+      Password <input type="password" name="password" />
+      <button id="login">Login</button>
+      <div>
+        <a href="#signup-page" class="signup-page-redirect">Signup</a>
+      </div>
+    </div>
+
+    <div id="signup-page">
+      Username <input type="text" name="username" />
+      Password <input type="password" name="password" />
+      <button id="signup">Signup</button>
+      <div>
+        <a href="#login-page" class="login-page-redirect">Login</a>
+      </div>
     </div>
     
-    <div class="modal fade" id="addParent" tabindex="-1" role="dialog" aria-labelledby="addParent" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Add Parent</h4>
-                </div>
-                <div class="modal-body">
-                    <label for="friend-name">Parent Name</label>
-                    <input type="text" class="friend-name" name="friend-name" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary add-friend-button">Add Parent</button>
-            </div>
+    <div id="home-page">
+      <div class="main-content-container">
+          <div class="sidebar-container col-md-4 tree well">
+              <div class="navigation">
+                  <button type="button" class="btn btn-default add-friend" data-toggle="modal" data-target="#addParent">Add Parent</button>
+              </div>
+              <ul class="parents-list">
+              </ul>
+          </div>
+          <div class="list-container col-md-8"></div>
+      </div>
+      
+      <div class="modal fade" id="addParent" tabindex="-1" role="dialog" aria-labelledby="addParent" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Add Parent</h4>
+                  </div>
+                  <div class="modal-body">
+                      <label for="friend-name">Parent Name</label>
+                      <input type="text" class="friend-name" name="friend-name" />
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary add-friend-button">Add Parent</button>
+              </div>
+          </div>
         </div>
       </div>
     </div>
@@ -109,14 +129,18 @@
   <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="/bower_components/bootstrap3-typeahead/bootstrap3-typeahead.min.js"></script>
 
-    <script type="text/javascript" src="javascripts/model/Parent.js"></script>
+    <!--<script type="text/javascript" src="javascripts/model/Parent.js"></script>
     <script type="text/javascript" src="javascripts/collections/ParentList.js"></script>
     <script type="text/javascript" src="javascripts/view/ListContent.js"></script>
     <script type="text/javascript" src="javascripts/view/ParentView.js"></script>
     <script type="text/javascript" src="javascripts/view/ParentListView.js"></script>
-    <script type="text/javascript" src="javascripts/view/AppView.js"></script>
-  <script type="text/javascript" src="javascripts/view/Header.js"></script>
-  <script type="text/javascript" src="javascripts/view/Footer.js"></script>
+    <script type="text/javascript" src="javascripts/view/HomeView.js"></script>
+    -->
+  <script type="text/javascript" src="javascripts/view/user/SignupView.js"></script>
+  <script type="text/javascript" src="javascripts/view/user/LoginView.js"></script>
+  <script type="text/javascript" src="javascripts/view/AppView.js"></script>
+  <script type="text/javascript" src="javascripts/view/layout/Header.js"></script>
+  <script type="text/javascript" src="javascripts/view/layout/Footer.js"></script>
   
 </body>
 </html>
