@@ -1,13 +1,8 @@
 'use strict';
 
 var ParentListView = Backbone.View.extend({
-  el: '.parents-list',
+  //el: '.parents-list',
   model: ParentList,
-
-  //Templated events not getting fired for some reason???
-  events: {
-    'click .tree li.parent_li > span': 'expandCollapseChildren'
-  },
 
   expandCollapseChildren: function(e){
     var children = $(this).parent('li.parent_li').find(' > ul > li');
@@ -40,8 +35,8 @@ var ParentListView = Backbone.View.extend({
         }
       });
     });
-    appView.currentChild = foundChild;
-    appView.currentParent = foundParent;
+    HomeView.currentChild = foundChild;
+    HomeView.currentParent = foundParent;
     new ListContent({model: foundChild});
     $(".child").removeClass("active");
     $(e.target).addClass("active");
