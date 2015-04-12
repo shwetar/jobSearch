@@ -1,7 +1,6 @@
 'use strict';
 
 var ParentListView = Backbone.View.extend({
-  //el: '.parents-list',
   model: ParentList,
 
   expandCollapseChildren: function(e){
@@ -37,7 +36,7 @@ var ParentListView = Backbone.View.extend({
     });
     HomeView.currentChild = foundChild;
     HomeView.currentParent = foundParent;
-    new ListContent({model: foundChild});
+    new ListContent({el: $(".list-container"), model: foundChild});
     $(".child").removeClass("active");
     $(e.target).addClass("active");
   },

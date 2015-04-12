@@ -1,7 +1,6 @@
 'use strict';
 
 var HomeView = Backbone.View.extend({
-    el: "#home-container",
     template: _.template($("#home-template").html()),
 
     events: {

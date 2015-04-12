@@ -1,9 +1,10 @@
 'use strict';
 
 var ContainerView = Backbone.View.extend({
-     myChildView: null,
+    el: $("#container"),
+    myChildView: null,
      
-     render: function() {
+    render: function() {
      	this.$el.empty();
         this.$el.append(this.myChildView.$el); 
         return this;

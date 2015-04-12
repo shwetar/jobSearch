@@ -8,7 +8,7 @@ var myRouter = Backbone.Router.extend({
     container:null,
     
     initialize: function() {
-        this.container = new ContainerView({ el: $("#app-container")});
+        this.container = new ContainerView();
      },
 
     routes: {
@@ -20,15 +20,13 @@ var myRouter = Backbone.Router.extend({
 
     homeRoute: function(){
         if (this.home == null) {
-            this.home = new HomeView();
+            this.home = new HomeView({el: $("#container")});
         }
-        //this.container.myChildView = this.home;
-        //this.container.render();
     },
 
     loginRoute: function () {
         if (this.login == null) {
-            this.login = new LoginView();
+            this.login = new LoginView({el: $("#container")});
         }
         this.container.myChildView = this.login;
         this.container.render();
@@ -36,7 +34,7 @@ var myRouter = Backbone.Router.extend({
 
     signupRoute: function () {
         if (this.signup == null) {
-            this.signup = new SignupView();
+            this.signup = new SignupView({el: $("#container")});
         }
 
         this.container.myChildView = this.signup;
