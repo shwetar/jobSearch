@@ -1,6 +1,10 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
+var Parent = require('../model/Parent');
 
-var ParentList = Backbone.Collection.extend({
+module.exports = Backbone.Collection.extend({
     model: Parent,
     initialize: function () {
     

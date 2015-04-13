@@ -1,8 +1,12 @@
 'use strict';
 
-var ParentView = Backbone.View.extend({
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
+
+module.exports = Backbone.View.extend({
     tagName:  'li',
-    template: _.template($("#parents-list-template").html()),
+    template: require('../../templates/parents-list.html'),
 
     initialize: function() {
         this.render();

@@ -1,6 +1,9 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
 
-var Parent = Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
     //urlRoot: '/api/parents',
     defaults : {
         id: "",

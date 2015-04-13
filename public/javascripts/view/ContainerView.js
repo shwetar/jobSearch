@@ -1,6 +1,8 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
 
-var ContainerView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
     el: $("#container"),
     myChildView: null,
      

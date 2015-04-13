@@ -1,0 +1,25 @@
+<div class="alert alert-error alert-danger fade out hidden">
+            <strong>Error!</strong> Invalid URL.
+</div>
+<h1>Favorite Links</h1>
+<ul>
+    <%
+        _.each(child.links, function(link,key,list){
+    %>
+        <li>
+            <a href="<%= link%>" target="_blank"><%= link%></a>
+        </li>
+    <%
+        });
+    %>
+</ul>
+<%
+        if(child.yourChild){
+%>
+<form id="add-link-form">
+  <input type="text" class="link-name" name="link-name" placeholder="http://www.friv.com" />
+  <button type="button" class="btn btn-primary add-link-button">Add Link</button>
+</form>
+<%
+    }
+%>

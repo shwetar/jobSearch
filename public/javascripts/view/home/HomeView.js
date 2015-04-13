@@ -1,7 +1,14 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
+var ListContent = require("./ListContent");
+var Parent = require("../../model/Parent");
+var ParentList = require("../../collections/ParentList");
+var ParentListView = require('./ParentListView');
 
-var HomeView = Backbone.View.extend({
-    template: _.template($("#home-template").html()),
+module.exports = Backbone.View.extend({
+    template: require('../../templates/home.html'),
 
     events: {
         'click .add-link-button': 'addLink',
@@ -49,19 +56,6 @@ var HomeView = Backbone.View.extend({
     },
     
     render: function() {
-      var self = this;
-      this.$el.html(this.template({}));
-      this.parentsList = new ParentList();
-      var parents = localStorage.getItem("parents");
-      if(_.isEmpty(parents)){
-        $.get("/api/parents", function(parents){
-          processData(parents);
-        });
-      }
-      else{
-        processData(JSON.parse(parents));
-      }
-
       function processData(parents){
         _.each(parents, function(parent){
           if(!self.currentChild){
@@ -74,6 +68,18 @@ var HomeView = Backbone.View.extend({
         new ListContent({el: $(".list-container"), model: self.currentChild});
         localStorage.setItem("parents", JSON.stringify(self.parentsList.toJSON()));
         return self;
+      }
+      var self = this;
+      this.$el.html(this.template({}));
+      this.parentsList = new ParentList();
+      var parents = localStorage.getItem("parents");
+      if(_.isEmpty(parents)){
+        $.get("/api/parents", function(parents){
+          processData(parents);
+        });
+      }
+      else{
+        processData(JSON.parse(parents));
       }
     },
 

@@ -1,6 +1,13 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
+var ParentList = require("../../collections/ParentList");
+var HomeView = require('./HomeView');
+var ListContent = require("./ListContent");
+var ParentView = require('./ParentView');
 
-var ParentListView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
   model: ParentList,
 
   expandCollapseChildren: function(e){

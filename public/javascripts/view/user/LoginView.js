@@ -1,10 +1,13 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
 
-var LoginView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
     events: {
       'click #login': 'handleLogin'
     },
-    template: _.template($("#login-template").html()),
+    template: require('../../templates/login-page.html'),
     
     handleLogin: function(){
       var userName = this.$el.find(".username").val();
@@ -15,7 +18,7 @@ var LoginView = Backbone.View.extend({
           window.location.hash = "home";
         }
         else{
-          alert(resp);
+          console.error(resp);
         }
       });
     },

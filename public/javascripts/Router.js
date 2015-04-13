@@ -1,13 +1,18 @@
 'use strict';
-var myRouter = Backbone.Router.extend({
-    
-    
+var $ = require('jquery');
+var Backbone = require('backbone');
+var LoginView = require("./view/user/LoginView");
+var SignupView = require("./view/user/SignupView");
+var ContainerView = require("./view/ContainerView");
+var HomeView = require("./view/home/HomeView");
+
+module.exports = Backbone.Router.extend({
     login: null,
     signup: null,
     home: null,
     container:null,
     
-    initialize: function() {
+    initialize: function() { 
         this.container = new ContainerView();
      },
 
@@ -19,13 +24,13 @@ var myRouter = Backbone.Router.extend({
     },
 
     homeRoute: function(){
-        if (this.home == null) {
+        if (this.home === null) {
             this.home = new HomeView({el: $("#container")});
         }
     },
 
     loginRoute: function () {
-        if (this.login == null) {
+        if (this.login === null) {
             this.login = new LoginView({el: $("#container")});
         }
         this.container.myChildView = this.login;
@@ -33,17 +38,12 @@ var myRouter = Backbone.Router.extend({
     },
 
     signupRoute: function () {
-        if (this.signup == null) {
+        if (this.signup === null) {
             this.signup = new SignupView({el: $("#container")});
         }
 
         this.container.myChildView = this.signup;
         this.container.render();
     }
-
     
 });
-
-
-var router = new myRouter();
-Backbone.history.start();

@@ -1,6 +1,12 @@
-var HeaderView = Backbone.View.extend({
+'use strict';
+
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
+
+module.exports = Backbone.View.extend({
     el: $('.header'),
-    template: _.template($("#header-template").html()),
+    template: require('../../templates/header.html'),
 
     initialize: function() {
         this.render();
@@ -10,6 +16,3 @@ var HeaderView = Backbone.View.extend({
         return this;
     }
 });
-
-
-new HeaderView({});

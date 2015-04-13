@@ -1,8 +1,10 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
 
-var SignupView = Backbone.View.extend({
-    //el: $('#signup-page'),
-    template: _.template($("#signup-template").html()),
+module.exports = Backbone.View.extend({
+    template: require('../../templates/signup-page.html'),
 
     initialize: function() {
       this.render();

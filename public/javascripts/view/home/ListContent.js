@@ -1,9 +1,10 @@
 'use strict';
+var $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
 
-var ListContent = Backbone.View.extend({
-  //el: $('.list-container'),
-  // template 
-  template: _.template($("#list-content-template").html()),
+module.exports = Backbone.View.extend({
+  template: require('../../templates/list-content.html'),
   
   initialize: function(){
     this.render();

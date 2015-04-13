@@ -1,0 +1,21 @@
+<ul>
+    <li class="parent_li">
+        <span><i class="glyphicon glyphicon-minus-sign"></i>
+            <%= item.name %>
+        </span>
+        <ul>
+            <%
+                var active = item.activeParent ? "active" : "";
+                _.each(item.children, function(child,key,list){
+                  
+            %>
+                <li>
+                    <span class="child <%=active%>" data-child='<%=JSON.stringify(child)%>'><i></i><%= child.name %></span> 
+                </li>
+            <%
+              active = "";
+                });
+            %>
+        </ul>
+    </li>
+</ul>
