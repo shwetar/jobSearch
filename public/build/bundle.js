@@ -124,7 +124,7 @@
 
 	var $ = __webpack_require__(9);
 	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
+	var _ = __webpack_require__(10);
 
 	module.exports = Backbone.View.extend({
 	    el: $('.header'),
@@ -155,7 +155,7 @@
 
 	  // Set up Backbone appropriately for the environment. Start with AMD.
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14), __webpack_require__(9), exports], __WEBPACK_AMD_DEFINE_RESULT__ = function(_, $, exports) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10), __webpack_require__(9), exports], __WEBPACK_AMD_DEFINE_RESULT__ = function(_, $, exports) {
 	      // Export global even in AMD case in case this script is loaded with
 	      // others that may still expect a global Backbone.
 	      root.Backbone = factory(root, exports, _, $);
@@ -1761,7 +1761,7 @@
 	'use strict';
 	var $ = __webpack_require__(9);
 	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
+	var _ = __webpack_require__(10);
 
 	module.exports = Backbone.View.extend({
 	    events: {
@@ -1803,7 +1803,7 @@
 	'use strict';
 	var $ = __webpack_require__(9);
 	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
+	var _ = __webpack_require__(10);
 
 	module.exports = Backbone.View.extend({
 	    template: __webpack_require__(17),
@@ -1849,11 +1849,11 @@
 	'use strict';
 	var $ = __webpack_require__(9);
 	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
-	var ListContent = __webpack_require__(10);
-	var Parent = __webpack_require__(11);
-	var ParentList = __webpack_require__(12);
-	var ParentListView = __webpack_require__(13);
+	var _ = __webpack_require__(10);
+	var ListContent = __webpack_require__(11);
+	var Parent = __webpack_require__(12);
+	var ParentList = __webpack_require__(13);
+	var ParentListView = __webpack_require__(14);
 
 	module.exports = Backbone.View.extend({
 	    template: __webpack_require__(18),
@@ -11152,179 +11152,6 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var $ = __webpack_require__(9);
-	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
-
-	module.exports = Backbone.View.extend({
-	  template: __webpack_require__(19),
-	  
-	  initialize: function(){
-	    this.render();
-	  },
-
-	  render: function(){
-	    this.$el.html(this.template({
-	        child: this.model
-	    }));
-	  }
-	});
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	var $ = __webpack_require__(9);
-	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
-
-	module.exports = Backbone.Model.extend({
-	    //urlRoot: '/api/parents',
-	    defaults : {
-	        id: "",
-	        name : '',
-	        city: '',
-	        children: []
-	    },
-	    idAttribute: "id",
-	    initialize: function () {
-	        console.log('Parent has been intialized');
-
-	        // Lets hook up some event handers to listen to model change
-	        this.on('change', function () {
-	            if(this.hasChanged('children')){
-	                console.log('children has been changed');
-	            }
-	        });
-
-	        this.on("invalid", function (model, error) {
-	            console.log("Invalid Parent params passed: " + error);
-	        });
-	    },
-	    constructor: function (attributes, options) {
-	        console.log('Parent\'s constructor had been called');
-	        Backbone.Model.apply(this, arguments);
-	    },
-	    validate: function (attr) {
-	        if (attr.id <= 0) {
-	            return "Invalid value for ID supplied.";
-	        }
-	    }
-	});
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	var $ = __webpack_require__(9);
-	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
-	var Parent = __webpack_require__(11);
-
-	module.exports = Backbone.Collection.extend({
-	    model: Parent,
-	    initialize: function () {
-	    
-	        // This will be called when an item is added. pushed or unshifted
-	        this.on('add', function(model) {
-	            console.log('something got added');
-	            localStorage.setItem("parents", JSON.stringify(this.toJSON()));
-	        });
-	        // This will be called when an item is removed, popped or shifted
-	        this.on('remove',  function(model) {
-	            console.log('something got removed');
-	            localStorage.setItem("parents", JSON.stringify(this.toJSON()));
-	        });
-	        // This will be called when an item is updated
-	        this.on('change', function(model) {
-	            console.log('something got changed');
-	            localStorage.setItem("parents", JSON.stringify(this.toJSON()));
-	        });
-	    }
-	});
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	var $ = __webpack_require__(9);
-	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
-	var ParentList = __webpack_require__(12);
-	var HomeView = __webpack_require__(8);
-	var ListContent = __webpack_require__(10);
-	var ParentView = __webpack_require__(20);
-
-	module.exports = Backbone.View.extend({
-	  model: ParentList,
-
-	  expandCollapseChildren: function(e){
-	    var children = $(this).parent('li.parent_li').find(' > ul > li');
-	    if (children.is(":visible")) {
-	        children.hide('fast');
-	        $(this).attr('title', 'Show Children')
-	              .find(' > i')
-	              .addClass('glyphicon-plus-sign')
-	              .removeClass('glyphicon-minus-sign');
-	    } else {
-	        children.show('fast');
-	        $(this).attr('title', 'Hide Children')
-	              .find(' > i')
-	              .addClass('glyphicon-minus-sign')
-	              .removeClass('glyphicon-plus-sign');
-	    }
-	    e.stopPropagation();
-	  },
-	  
-	  childClicked: function(e){
-	    var foundChild;
-	    var foundParent;
-	    var childId = $(e.target).data("child").id;
-	    _.each(this.collection.models, function(parent){
-	      var children = parent.get("children");
-	      _.each(children, function(child){
-	        if(child.id === childId){
-	          foundChild = child;
-	          foundParent = parent;
-	        }
-	      });
-	    });
-	    HomeView.currentChild = foundChild;
-	    HomeView.currentParent = foundParent;
-	    new ListContent({el: $(".list-container"), model: foundChild});
-	    $(".child").removeClass("active");
-	    $(e.target).addClass("active");
-	  },
-
-	  initialize: function(){
-	    var self = this;
-	    this.listenTo(this.collection, "add", this.render);
-	    this.render();
-	  },
-	  render: function(){
-	    var self = this;
-	    self.$el.empty();
-	    this.collection.each(function(model) {
-	      var activeParent = model.id === 1;
-	      model.set("activeParent",activeParent);
-	      var parentView = new ParentView({model: model.toJSON()});
-	      self.$el.append(parentView.el);
-	    });
-	    $('.tree li.parent_li > span').on("click", this.expandCollapseChildren);
-	    $('.child').on("click", function(e){
-	      self.childClicked(e);
-	    });
-	  }
-	});
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
 	//     http://underscorejs.org
 	//     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12876,6 +12703,179 @@
 
 
 /***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $ = __webpack_require__(9);
+	var Backbone = __webpack_require__(4);
+	var _ = __webpack_require__(10);
+
+	module.exports = Backbone.View.extend({
+	  template: __webpack_require__(19),
+	  
+	  initialize: function(){
+	    this.render();
+	  },
+
+	  render: function(){
+	    this.$el.html(this.template({
+	        child: this.model
+	    }));
+	  }
+	});
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $ = __webpack_require__(9);
+	var Backbone = __webpack_require__(4);
+	var _ = __webpack_require__(10);
+
+	module.exports = Backbone.Model.extend({
+	    //urlRoot: '/api/parents',
+	    defaults : {
+	        id: "",
+	        name : '',
+	        city: '',
+	        children: []
+	    },
+	    idAttribute: "id",
+	    initialize: function () {
+	        console.log('Parent has been intialized');
+
+	        // Lets hook up some event handers to listen to model change
+	        this.on('change', function () {
+	            if(this.hasChanged('children')){
+	                console.log('children has been changed');
+	            }
+	        });
+
+	        this.on("invalid", function (model, error) {
+	            console.log("Invalid Parent params passed: " + error);
+	        });
+	    },
+	    constructor: function (attributes, options) {
+	        console.log('Parent\'s constructor had been called');
+	        Backbone.Model.apply(this, arguments);
+	    },
+	    validate: function (attr) {
+	        if (attr.id <= 0) {
+	            return "Invalid value for ID supplied.";
+	        }
+	    }
+	});
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $ = __webpack_require__(9);
+	var Backbone = __webpack_require__(4);
+	var _ = __webpack_require__(10);
+	var Parent = __webpack_require__(12);
+
+	module.exports = Backbone.Collection.extend({
+	    model: Parent,
+	    initialize: function () {
+	    
+	        // This will be called when an item is added. pushed or unshifted
+	        this.on('add', function(model) {
+	            console.log('something got added');
+	            localStorage.setItem("parents", JSON.stringify(this.toJSON()));
+	        });
+	        // This will be called when an item is removed, popped or shifted
+	        this.on('remove',  function(model) {
+	            console.log('something got removed');
+	            localStorage.setItem("parents", JSON.stringify(this.toJSON()));
+	        });
+	        // This will be called when an item is updated
+	        this.on('change', function(model) {
+	            console.log('something got changed');
+	            localStorage.setItem("parents", JSON.stringify(this.toJSON()));
+	        });
+	    }
+	});
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $ = __webpack_require__(9);
+	var Backbone = __webpack_require__(4);
+	var _ = __webpack_require__(10);
+	var ParentList = __webpack_require__(13);
+	var HomeView = __webpack_require__(8);
+	var ListContent = __webpack_require__(11);
+	var ParentView = __webpack_require__(20);
+
+	module.exports = Backbone.View.extend({
+	  model: ParentList,
+
+	  expandCollapseChildren: function(e){
+	    var children = $(this).parent('li.parent_li').find(' > ul > li');
+	    if (children.is(":visible")) {
+	        children.hide('fast');
+	        $(this).attr('title', 'Show Children')
+	              .find(' > i')
+	              .addClass('glyphicon-plus-sign')
+	              .removeClass('glyphicon-minus-sign');
+	    } else {
+	        children.show('fast');
+	        $(this).attr('title', 'Hide Children')
+	              .find(' > i')
+	              .addClass('glyphicon-minus-sign')
+	              .removeClass('glyphicon-plus-sign');
+	    }
+	    e.stopPropagation();
+	  },
+	  
+	  childClicked: function(e){
+	    var foundChild;
+	    var foundParent;
+	    var childId = $(e.target).data("child").id;
+	    _.each(this.collection.models, function(parent){
+	      var children = parent.get("children");
+	      _.each(children, function(child){
+	        if(child.id === childId){
+	          foundChild = child;
+	          foundParent = parent;
+	        }
+	      });
+	    });
+	    HomeView.currentChild = foundChild;
+	    HomeView.currentParent = foundParent;
+	    new ListContent({el: $(".list-container"), model: foundChild});
+	    $(".child").removeClass("active");
+	    $(e.target).addClass("active");
+	  },
+
+	  initialize: function(){
+	    var self = this;
+	    this.listenTo(this.collection, "add", this.render);
+	    this.render();
+	  },
+	  render: function(){
+	    var self = this;
+	    self.$el.empty();
+	    this.collection.each(function(model) {
+	      var activeParent = model.id === 1;
+	      model.set("activeParent",activeParent);
+	      var parentView = new ParentView({model: model.toJSON()});
+	      self.$el.append(parentView.el);
+	    });
+	    $('.tree li.parent_li > span').on("click", this.expandCollapseChildren);
+	    $('.child').on("click", function(e){
+	      self.childClicked(e);
+	    });
+	  }
+	});
+
+/***/ },
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12954,7 +12954,7 @@
 	}
 	return __p;
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ },
 /* 20 */
@@ -12964,7 +12964,7 @@
 
 	var $ = __webpack_require__(9);
 	var Backbone = __webpack_require__(4);
-	var _ = __webpack_require__(14);
+	var _ = __webpack_require__(10);
 
 	module.exports = Backbone.View.extend({
 	    tagName:  'li',
@@ -13009,7 +13009,7 @@
 	}
 	return __p;
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
 
 /***/ }
 /******/ ]);

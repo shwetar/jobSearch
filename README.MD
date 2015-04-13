@@ -9,6 +9,8 @@ $ npm install
 ```
 Locally
 $ npm run devStart
+//To auto compile static resources
+$ webpack --progress --colors --watch
 Heroku
 $ npm start
 $ node ./bin/www
