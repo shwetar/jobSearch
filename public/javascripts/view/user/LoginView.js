@@ -2,7 +2,6 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
-var HeaderView = require('../layout/Header');
 
 module.exports = Backbone.View.extend({
     events: {
@@ -10,17 +9,29 @@ module.exports = Backbone.View.extend({
     },
     template: require('../../templates/login-page.html'),
     
-    handleLogin: function(){
+    handleLogin: function(e){
+      e.preventDefault();
       var userName = this.$el.find("#inputEmail").val();
       var password = this.$el.find("#inputPassword").val();
-
-      $.post("/api/users/login", {userName: userName, password: password}, function(resp){
-        if(resp.success){
-          window.location.hash = "home";
-        }
-        else{
-          console.error(resp);
-        }
+      $.ajax({
+        method: "POST",
+        url: "/api/users/login",
+        cache: false,
+        data: {userName: userName, password: password},
+        dataType:"json"
+      })
+      .done(function( resp ) {
+          if(resp.success){
+            window.location.hash = "home";
+          }
+          else{
+            $(".alert-error").addClass('in').removeClass('out').removeClass('hidden');
+            console.error(resp);
+          }
+      })
+      .fail(function( jqXHR, textStatus ) {
+        $(".alert-error").addClass('in').removeClass('out').removeClass('hidden');
+        console.error( "Request failed: " + textStatus );
       });
     },
 

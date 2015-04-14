@@ -1,5 +1,8 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
+var UserModel = require("../model/user");
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -8,11 +11,20 @@ router.get('/', function(req, res) {
 
 
 router.post('/login', function(req, res) {
-    //UserModel.find({username: userName, password: password}) ==> true/false
-    console.log(req.body.userName, req.body.password);
-      res.send({
-        success: true
-      });
+    UserModel.getUser(req, function(resp){
+        res.send({
+            success: resp.length > 0
+        });
+    });
+});
+
+router.post('/signup', function(req, res) {
+    UserModel.newUser(req, function(e, resp){
+        console.log(resp);
+        res.send({
+            success: resp.length > 0
+        });
+    });
 });
 
 module.exports = router;

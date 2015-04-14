@@ -1,20 +1,14 @@
 <div class="container">
   <form class="form-signin">
-    <div class="alert alert-error alert-danger fade out hidden">
-      <strong>Error!</strong> Invalid Username and password combination.
-    </div>
-    <h2 class="form-signin-heading">Login</h2>
+    <h2 class="form-signin-heading">Sign Up</h2>
+    <label for="fullName" class="sr-only">Full Name</label>
+    <input type="text" id="fullName" class="form-control" placeholder="Full Name" required="" autofocus="" autocomplete="off" value="">
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off" value="">
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" autocomplete="off" value="">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="btn btn-lg btn-primary" id="login" type="submit">Sign in</button>
-    <a href="#signup">Sign up</a>
+    <button class="btn btn-lg btn-primary" id="signup" type="submit">Sign up</button>
+    <a href="#login">Login</a>
   </form>
 
 </div>

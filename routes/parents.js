@@ -1,6 +1,8 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
-var parentsModel = require("../model/parents");
+var ParentsModel = require("../model/parents");
 
 var parents = [{
     "id": 1,
@@ -46,5 +48,12 @@ router.get('/', function(req, res) {
     res.send(parents);
 });
 
+router.post('/', function(req, res){
+    ParentsModel.createParents(req, function(e, resp){
+        res.send({
+            success: "success"
+        });
+    });
+});
 
 module.exports = router;

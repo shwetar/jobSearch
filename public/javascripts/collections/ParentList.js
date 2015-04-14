@@ -11,16 +11,26 @@ module.exports = Backbone.Collection.extend({
         this.on('add', function(model) {
             console.log('something got added');
             localStorage.setItem("parents", JSON.stringify(this.toJSON()));
+            this.saveParentsCollection();
         });
         // This will be called when an item is removed, popped or shifted
         this.on('remove',  function(model) {
             console.log('something got removed');
             localStorage.setItem("parents", JSON.stringify(this.toJSON()));
+            this.saveParentsCollection();
         });
         // This will be called when an item is updated
         this.on('change', function(model) {
             console.log('something got changed');
             localStorage.setItem("parents", JSON.stringify(this.toJSON()));
+            this.saveParentsCollection();
+        });
+    },
+
+    saveParentsCollection: function(){
+        $.post("/api/parents", this.toJSON(), function(resp){
+            console.log(resp);
         });
     }
 });
+
