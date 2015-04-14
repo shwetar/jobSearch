@@ -7,10 +7,8 @@ var db = mongoskin.db('mongodb://opolyo01:money01@ds031571.mongolab.com:31571/ol
 
 exports.createParents = function(req, cb){
     req.collection= db.collection('parents');
-    delete req.body._id;
     console.log("Body", req.body);
     req.collection.remove({}, function(){
-        debugger;
         req.collection.insert(req.body,{},function(e,results){
             cb.call(this, e, results);
         });

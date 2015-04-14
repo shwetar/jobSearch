@@ -28,9 +28,19 @@ module.exports = Backbone.Collection.extend({
     },
 
     saveParentsCollection: function(){
-        $.post("/api/parents", this.toJSON(), function(resp){
-            console.log(resp);
-        });
+        $.ajax({
+            method: "POST",
+            url: "/api/parents",
+            cache: false,
+            data: JSON.stringify(this),
+            headers: {'Content-Type': "application/json"}
+          })
+          .done(function( resp ) {
+              console.log(resp);
+          })
+          .fail(function( jqXHR, textStatus ) {
+            console.error( "Request failed: " + textStatus );
+          });
     }
 });
 
