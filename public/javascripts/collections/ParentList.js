@@ -7,7 +7,6 @@ var Parent = require('../model/Parent');
 module.exports = Backbone.Collection.extend({
     model: Parent,
     initialize: function () {
-    
         // This will be called when an item is added. pushed or unshifted
         this.on('add', function(model) {
             console.log('something got added');

@@ -4,6 +4,8 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = { 
+    debug: true,
+    devtool: "eval",
     entry: [
             './public/javascripts/app.js'
     ],

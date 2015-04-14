@@ -12,10 +12,47 @@ module.exports = Backbone.View.extend({
 
     events: {
         'click .add-link-button': 'addLink',
-        'click .add-friend-button': 'addParent',
         'submit #add-link-form': 'addLink'
     },
     
+    expandCollapseChildren: function(e){
+      var children = $(this).parent('li.parent_li').find(' > ul > li');
+      if (children.is(":visible")) {
+          children.hide('fast');
+          $(this).attr('title', 'Show Children')
+                .find(' > i')
+                .addClass('glyphicon-plus-sign')
+                .removeClass('glyphicon-minus-sign');
+      } else {
+          children.show('fast');
+          $(this).attr('title', 'Hide Children')
+                .find(' > i')
+                .addClass('glyphicon-minus-sign')
+                .removeClass('glyphicon-plus-sign');
+      }
+      e.stopPropagation();
+    },
+    
+    childClicked: function(e){
+      var foundChild;
+      var foundParent;
+      var childId = $(e.target).data("child").id;
+      _.each(this.parentsList.models, function(parent){
+        var children = parent.get("children");
+        _.each(children, function(child){
+          if(child.id === childId){
+            foundChild = child;
+            foundParent = parent;
+          }
+        });
+      });
+      this.currentChild = foundChild;
+      this.currentParent = foundParent;
+      new ListContent({el: $(".list-container"), model: foundChild});
+      $(".child").removeClass("active");
+      $(e.target).addClass("active");
+    },
+
     addLink: function(e){
       var self = this;
       e.preventDefault();
@@ -23,7 +60,7 @@ module.exports = Backbone.View.extend({
       if(this.validateUrl(linkName)){
         var links = this.currentChild.links.concat(linkName);
         this.currentChild.links = links;
-        new ListContent({model: this.currentChild});
+        new ListContent({el: $(".list-container"), model: this.currentChild});
         _.each(this.currentParent.children, function(child){
           if(child.id === self.currentChild.id){
             self.currentChild.links = links;
@@ -37,50 +74,42 @@ module.exports = Backbone.View.extend({
       }
     },
 
-    addParent: function(){
-      console.log("added friend");
-      
-      var friend = new Parent({
-          id: this.parentsList.length+1,
-          name: $(".friend-name").val(),
-          city: 'San Jose',
-          children: []
-      });
-      this.parentsList.add(friend);
-      $('#addParent').modal('hide');
-      localStorage.setItem("parents", JSON.stringify(this.parentsList.toJSON()));
-    },
-
     initialize: function() {
       this.render();
     },
     
     render: function() {
-      function processData(parents){
-        _.each(parents, function(parent){
-          if(!self.currentChild){
-            self.currentChild = parent.children[0];
-            self.currentParent = parent;
-          }
-          self.parentsList.push(new Parent(parent));
-        });
-        new ParentListView({el: $(".parents-list"), collection: self.parentsList});
-        new ListContent({el: $(".list-container"), model: self.currentChild});
-        localStorage.setItem("parents", JSON.stringify(self.parentsList.toJSON()));
-        return self;
-      }
       var self = this;
       this.$el.html(this.template({}));
       this.parentsList = new ParentList();
       var parents = localStorage.getItem("parents");
       if(_.isEmpty(parents)){
         $.get("/api/parents", function(parents){
-          processData(parents);
+          self.processData(parents);
         });
       }
       else{
-        processData(JSON.parse(parents));
+        this.processData(JSON.parse(parents));
       }
+    },
+
+    processData : function(parents){
+      var self = this;
+      _.each(parents, function(parent){
+        if(!this.currentChild){
+          this.currentChild = parent.children[0];
+          this.currentParent = parent;
+        }
+        this.parentsList.push(new Parent(parent));
+      }.bind(this));
+      this.parentList = new ParentListView({el: $(".parents-list"), collection: this.parentsList});
+      this.listContent = new ListContent({el: $(".list-container"), model: this.currentChild});
+      localStorage.setItem("parents", JSON.stringify(this.parentsList.toJSON()));
+
+      $('.tree li.parent_li > span').on("click", this.expandCollapseChildren);
+      $('.child').on("click", function(e){
+        self.childClicked(e);
+      });
     },
 
     validateUrl: function(value){

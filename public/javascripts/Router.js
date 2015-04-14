@@ -24,26 +24,15 @@ module.exports = Backbone.Router.extend({
     },
 
     homeRoute: function(){
-        if (this.home === null) {
-            this.home = new HomeView({el: $("#container")});
-        }
+        this.home = new HomeView({el: $("#container")});
     },
 
     loginRoute: function () {
-        if (this.login === null) {
-            this.login = new LoginView({el: $("#container")});
-        }
-        this.container.myChildView = this.login;
-        this.container.render();
+        this.login = new LoginView({el: $("#container")});
     },
 
     signupRoute: function () {
-        if (this.signup === null) {
-            this.signup = new SignupView({el: $("#container")});
-        }
-
-        this.container.myChildView = this.signup;
-        this.container.render();
+        this.signup = new SignupView({el: $("#container")});
     }
     
 });
