@@ -12,7 +12,25 @@
     <header id="header"></header>
     <div id="container"></div>
     <div id="footer"></div>
-  
+    
+    <div class="modal fade" id="addChild" tabindex="-1" role="dialog" aria-labelledby="addParent" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Child</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="child-name">Child Name</label>
+                    <input type="text" class="child-name" name="child-name" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary add-child-button">Add Child</button>
+            </div>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript" src="build/bundle.js"></script>
 </body>
 </html>

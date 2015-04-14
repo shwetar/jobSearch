@@ -2,9 +2,9 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 var LoginView = require("./view/user/LoginView");
-var SignupView = require("./view/user/SignupView");
 var ContainerView = require("./view/ContainerView");
 var HomeView = require("./view/home/HomeView");
+var HeaderView = require('./view/layout/Header.js');
 
 module.exports = Backbone.Router.extend({
     login: null,
@@ -17,22 +17,24 @@ module.exports = Backbone.Router.extend({
      },
 
     routes: {
-        "": "loginRoute",
         "login": "loginRoute",
-        "signup": "signupRoute",
-        "home": "homeRoute"
+        "home": "homeRoute",
+        '*path': "loginRoute"
     },
 
     homeRoute: function(){
+        var header = new HeaderView({model: {
+              loggedIn: true
+        }});
+        
         this.home = new HomeView({el: $("#container")});
     },
 
     loginRoute: function () {
         this.login = new LoginView({el: $("#container")});
-    },
-
-    signupRoute: function () {
-        this.signup = new SignupView({el: $("#container")});
+        var header = new HeaderView({model: {
+              loggedIn: false
+        }});
     }
     
 });

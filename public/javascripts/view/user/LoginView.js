@@ -2,6 +2,7 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
+var HeaderView = require('../layout/Header');
 
 module.exports = Backbone.View.extend({
     events: {
@@ -10,8 +11,8 @@ module.exports = Backbone.View.extend({
     template: require('../../templates/login-page.html'),
     
     handleLogin: function(){
-      var userName = this.$el.find(".username").val();
-      var password = this.$el.find(".password").val();
+      var userName = this.$el.find("#inputEmail").val();
+      var password = this.$el.find("#inputPassword").val();
 
       $.post("/api/users/login", {userName: userName, password: password}, function(resp){
         if(resp.success){

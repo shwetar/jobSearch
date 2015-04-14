@@ -7,7 +7,14 @@
         _.each(child.links, function(link,key,list){
     %>
         <li>
-            <a href="<%= link%>" target="_blank"><%= link%></a>
+            <a href="<%= link%>" target="_blank" class="link"><%= link%></a>
+            <%
+                    if(child.yourChild){
+            %>
+            <button data-child='<%=key%>' class="destroy">Delete Link</button>
+            <%
+                }
+            %>
         </li>
     <%
         });

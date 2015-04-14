@@ -6,7 +6,8 @@ var _ = require('underscore');
 module.exports = Backbone.Model.extend({
     defaults : {
         id: "",
-        name : '',
+        email : '',
+        name: '',
         city: '',
         children: []
     },
